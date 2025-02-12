@@ -8,7 +8,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 import aiohttp
 
 # Инициализация бота
-bot = Bot(token=os.getenv("BOT_TOKEN"))
+bot = Bot(token='7983108836:AAEqkMiIlbzRRql6YEhuic-QjooSS72nsb4')
 dp = Dispatcher(storage=MemoryStorage())
 
 # Клавиатура
