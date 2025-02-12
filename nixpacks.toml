@@ -1,0 +1,13 @@
+[phases.setup]
+nixPkgs = ["python310", "sqlite"]
+
+[phases.install]
+commands = [
+    "pip install -r bot/requirements.txt",
+    "pip install -r webapp/requirements.txt"
+]
+
+[start]
+commands = [
+    "python bot/bot.py & python webapp/app.py"
+]
