@@ -5,6 +5,7 @@ from aiogram.filters import CommandStart
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.enums import ParseMode
 import aiohttp
 
 # Инициализация бота
@@ -47,7 +48,7 @@ async def save_state(message: types.Message, state: FSMContext):
         try:
             async with session.post(
                 f"{os.getenv('WEB_APP_URL')}/api/user-state/",
-                data={"chat_id": message.from_user.id, "state": message.text.strip()}
+                json={"chat_id": message.from_user.id, "state": message.text.strip()}
             ) as response:
                 if response.status == 200:
                     await message.answer("✅ Состояние сохранено!")
@@ -59,6 +60,10 @@ async def save_state(message: types.Message, state: FSMContext):
     
     await state.clear()
 
+# Запуск бота
+async def main():
+    await dp.start_polling(bot)
+
 if __name__ == "__main__":
-    from aiogram import executor
-    executor.start_polling(dp)
+    import asyncio
+    asyncio.run(main())
