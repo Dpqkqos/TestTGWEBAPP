@@ -21,4 +21,4 @@ COPY webapp ./webapp
 WORKDIR /app/webapp
 
 # Запускаем приложения
-CMD python bot/bot.py & python app.py
+CMD python ../bot/bot.py & python app.py
